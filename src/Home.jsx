@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 const NAME = "Manjeet Varun";
 const ROLES = [
@@ -191,7 +193,7 @@ export default function Home() {
     animation: `fu 0.7s ease forwards ${0.1 + i * 0.1}s`,
   });
 
-  const navLinks = ["Home", "About", "Experience", "Skills", "Project", "Contact"];
+  const navLinks = ["Home", "About", "Skills", "Experience", "Project", "Contact"];
   const pikaScale = isMobile ? 0.6 : isTablet ? 0.78 : 1;
   const pikaContainerH = isMobile ? 300 : isTablet ? 400 : 560;
   const ringSize1 = Math.round(300 * pikaScale);
@@ -234,7 +236,7 @@ export default function Home() {
         {!isMobile && (
           <div style={{ display: "flex", gap: isTablet ? 18 : 28 }}>
             {navLinks.map((l) => (
-              <button key={l} className="nav-link" style={{ fontSize: isTablet ? 12 : 13 }}>{l}</button>
+              <Link key={l} to={l === "Home" ? "/" : `/${l.toLowerCase()}`} className="nav-link" style={{ fontSize: isTablet ? 12 : 13 }}>{l}</Link>
             ))}
           </div>
         )}
@@ -252,7 +254,7 @@ export default function Home() {
         {isMobile && menuOpen && (
           <div className="mobile-menu">
             {navLinks.map((l) => (
-              <button key={l} className="nav-link-mobile" onClick={() => setMenuOpen(false)}>{l}</button>
+              <Link key={l} to={l === "Home" ? "/" : `/${l.toLowerCase()}`} className="nav-link-mobile" onClick={() => setMenuOpen(false)}>{l}</Link>
             ))}
           </div>
         )}
@@ -403,6 +405,8 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PortfolioIntro from "./PortfolioIntro";
 import Home from "./Home";
+import About from "./About";
+import Skills from "./Skills";
 import "./App.css";
 
 function App() {
@@ -23,7 +26,16 @@ function App() {
     return <PortfolioIntro />;
   }
 
-  return <Home />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/skills" element={<Skills />} />
+        {/* Add other routes as needed */}
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
