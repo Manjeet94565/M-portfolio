@@ -7,37 +7,36 @@ const SKILL_CATEGORIES = [
   {
     title: "Frontend",
     items: [
-      { name: "HTML5", icon: "🌐" },
-      { name: "CSS3", icon: "🎨" },
-      { name: "JavaScript", icon: "📜" },
-      { name: "TypeScript", icon: "🔤" },
-      { name: "React", icon: "⚛️" },
-      { name: "Angular", icon: "🔧" },
-      { name: "Bootstrap", icon: "🅱️" }
+      { name: "HTML5", image: "html5.png" },
+      { name: "CSS3", image: "css3.png" },
+      { name: "JavaScript", image: "javascript.png" },
+      { name: "Angular", image: "Angular.png" },
+      { name: "Bootstrap", image: "bootstrap.png" }
     ]
   },
   {
     title: "Backend",
     items: [
       { name: "Node.js", icon: "⚡" },
-      { name: "Express", icon: "🚀" },
-      { name: "MongoDB", icon: "🐘" },
-      { name: "MySQL", icon: "🗄️" },
-      { name: "Python", icon: "🐍" },
-      { name: "Flask", icon: "🍶" },
-      { name: "Java", icon: "☕" },
-      { name: "C", icon: "⚙️" },
-      { name: "Firebase", icon: "🔥" }
+      { name: "Express", image: "express.png" },
+      { name: "MongoDB", image: "mongodb.png" },
+      { name: "Flask", image: "flask.png" }
     ]
   },
   {
-    title: "Tools & Platforms",
+    title: "Tool",
     items: [
-      { name: "Git", icon: "🌿" },
-      { name: "GitHub", icon: "📂" },
-      { name: "VS Code", icon: "🧑‍💻" },
-      { name: "Figma", icon: "🎨" },
-      { name: "Android", icon: "🤖" }
+      { name: "Git", image: "git.png" },
+      { name: "GitHub", image: "github.png" },
+      { name: "Android", image: "android.png" }
+    ]
+  },
+  {
+    title: "Programming",
+    items: [
+      { name: "Python", icon: "🐍" },
+      { name: "C", image: "C.png" },
+      { name: "Java", image: "java.png" }
     ]
   }
 ];
@@ -82,10 +81,10 @@ export default function Skills() {
       .nav-link-mobile { display: block; width: 100%; text-align: left; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 16px; padding: 14px 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'Outfit', sans-serif; transition: color 0.2s; cursor: pointer; background: none; }
       .nav-link-mobile:hover { color: #00e5cc; }
 
-      .skill-item { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(0,229,204,0.2); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative; overflow: hidden; }
+      .skill-item { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(0,229,204,0.2); border-radius: 20px; padding: 20px 24px; text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative; overflow: hidden; }
       .skill-item:hover { transform: translateY(-12px) scale(1.05); background: rgba(0,229,204,0.08); border-color: #00e5cc; animation: skillGlow 1.5s ease-in-out infinite; }
-      .skill-icon { font-size: clamp(48px, 8vw, 72px); margin-bottom: 12px; display: block; filter: drop-shadow(0 4px 12px rgba(0,229,204,0.3)); transition: filter 0.3s; }
-      .skill-item:hover .skill-icon { filter: drop-shadow(0 8px 24px rgba(0,229,204,0.6)); }
+      .skill-icon { width: clamp(56px, 10vw, 80px); height: clamp(56px, 10vw, 80px); margin-bottom: 12px; display: block; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0,229,204,0.3)); transition: all 0.4s ease; }
+      .skill-item:hover .skill-icon { filter: drop-shadow(0 12px 32px rgba(0,229,204,0.7)); transform: scale(1.1) rotate(5deg); }
       .skill-name { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 
       .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
@@ -242,20 +241,39 @@ export default function Skills() {
               }}>{category.title}</h2>
               <div className="skills-grid" style={{
                 display: "grid",
-                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : isTablet ? "repeat(3, 1fr)" : "repeat(5, 1fr)",
+                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : isTablet ? "repeat(3, 1fr)" : "repeat(auto-fit, minmax(200px, 1fr))",
                 gap: isMobile ? 20 : isTablet ? 28 : 36,
                 maxWidth: 1200,
                 margin: "0 auto"
               }}>
-                {category.items.map((skill, index) => {
-                  const animationIndex = catIndex * 10 + index;
-                  return (
-                    <div key={skill.name} className="skill-item" style={{ animationDelay: `${animationIndex * 0.05}s` }}>
-                      <span className="skill-icon" aria-label={skill.name}>{skill.icon}</span>
-                      <div className="skill-name">{skill.name}</div>
+                {category.title === "Frontend" ? (
+                  <div className="skill-item" style={{ animationDelay: `${catIndex * 10 * 0.05}s` }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '12px' }}>
+                      {category.items.map((skill, idx) => (
+                        skill.icon ? (
+                          <span key={skill.name} className="skill-icon" style={{ width: '40px', height: '40px' }} aria-label={skill.name}>{skill.icon}</span>
+                        ) : (
+                          <img key={skill.name} src={`/assets/skills/${skill.image}`} alt={skill.name} className="skill-icon" style={{ width: '40px', height: '40px' }} />
+                        )
+                      ))}
                     </div>
-                  );
-                })}
+                    <div className="skill-name">Frontend Technologies</div>
+                  </div>
+                ) : (
+                  category.items.map((skill, index) => {
+                    const animationIndex = catIndex * 10 + index;
+                    return (
+                      <div key={skill.name} className="skill-item" style={{ animationDelay: `${animationIndex * 0.05}s` }}>
+                        {skill.icon ? (
+                          <span className="skill-icon" aria-label={skill.name}>{skill.icon}</span>
+                        ) : (
+                          <img src={`/assets/skills/${skill.image}`} alt={skill.name} className="skill-icon" />
+                        )}
+                        <div className="skill-name">{skill.name}</div>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </div>
           ))}

@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 const NAME = "Manjeet Varun";
 const ABOUT_TEXT = "I'm a passionate full-stack developer with a love for creating innovative web experiences. My journey in tech started with a curiosity for how things work, and it has evolved into a career where I blend creativity with technical expertise to build solutions that matter.";
-const QUALIFICATION = "B.Tech from Dr. APJ Abdul Kalam University";
+const QUALIFICATION = "B.Tech -  Dr. APJ Abdul Kalam University";
 const INTERESTS = ["Video Editing", "Photography", "Gaming", "YouTube Content Creation"];
 
 function useWindowWidth() {
@@ -269,7 +269,7 @@ export default function About() {
                   color: "#00e5cc",
                   marginBottom: 10,
                 }}>
-                  🎓 Qualification
+                  🎓 EDUCATION
                 </h3>
                 <p style={{
                   fontSize: isMobile ? 16 : 18,
