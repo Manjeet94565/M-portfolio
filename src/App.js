@@ -4,7 +4,7 @@ import PortfolioIntro from "./PortfolioIntro";
 import Home from "./Home";
 import About from "./About";
 import Skills from "./Skills";
-import Experience from "./Experience";
+
 import "./App.css";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/skills" element={<Skills />} />
-        <Route path="/experience" element={<Experience />} />
+
         {/* Add other routes as needed */}
       </Routes>
     </Router>
